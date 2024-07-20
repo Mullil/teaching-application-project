@@ -2,7 +2,7 @@
 opetussovellus kielten opiskeluun
 
 Sovelluksen avulla voidaan järjestää verkkokursseja kielten opiskeluun. Kursseilla on tekstimateriaalia ja automaattisesti tarkastettavia tehtäviä.
-Jokainen käyttäjä on opettaja tai opiskelija. Kurssilla voidaan opettaa kieliä, jotka eivät käytä latinalaista aakkostoa (esim. kreikka, heprea, akkadi, sumeri),
+Jokainen käyttäjä on opettaja tai opiskelija. Kursseilla voidaan opettaa kieliä, jotka eivät käytä latinalaista aakkostoa (esim. kreikka, heprea, akkadi, sumeri),
 ja kielen opiskelu koostuu tällöin kurssilla kolmesta tasosta: 
 1. kirjoitusjärjestelmään tutustuminen (vain pintapuolisesti mikäli merkkejä on kielessä paljon)
 2. yksinkertaisten sanojen oppiminen 
