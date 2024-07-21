@@ -1,13 +1,11 @@
 # teaching-application-project
-opetussovellus kielten opiskeluun
+Vieraiden kielten kirjoitusmerkkien opetussovellus kielten opiskelun tueksi.
 
-Sovelluksen avulla voidaan järjestää verkkokursseja kielten opiskeluun. Kursseilla on tekstimateriaalia ja automaattisesti tarkastettavia tehtäviä.
-Jokainen käyttäjä on opettaja tai opiskelija. Kursseilla voidaan opettaa kieliä, jotka eivät käytä latinalaista aakkostoa (esim. kreikka, heprea, akkadi, sumeri),
-ja kielen opiskelu koostuu tällöin kurssilla kolmesta tasosta: 
-1. kirjoitusjärjestelmään tutustuminen (vain pintapuolisesti mikäli merkkejä on kielessä paljon)
-2. yksinkertaisten sanojen oppiminen 
-3. yksinkertaisten lauseiden kääntäminen
-
+Sovelluksen avulla voidaan järjestää verkkokursseja eri kielten kirjoitusjärjestelmien opiskeluun. Kursseilla on tekstimateriaalia ja automaattisesti tarkastettavia tehtäviä. Jokainen käyttäjä on opettaja tai opiskelija. Kursseilla voidaan opettaa sellaisia kieliä, jotka eivät käytä latinalaista aakkostoa (esim. kreikka, heprea, akkadi, sumeri), ja kielen opiskelu koostuu tällöin kurssilla esimerkiksi seuraavista kolmesta tasosta, joista jokaisen tarkoituksena on tutustua paremmin kielen kirjoitusjärjestelmään: 
+1. kirjoitusjärjestelmään kuuluvien merkkien harjoittelu (mikäli merkkejä on kielessä paljon, voi olla tarpeen ja hyödyllistä järjestää useampi kurssi)
+2. opituilla merkeillä kirjoitettavien yksinkertaisten sanojen oppiminen,
+3. ja yksinkertaisten lauseiden lukeminen ja kääntäminen.
+Näiden sovelluksen kolmen tason läpäisemisen jälkeen siirtyminen kielen varsinaiseen opiskeluun pitäisi olla helpompaa, kun kielen merkistö on osin tai kokonaan tuttu.
 
 Sovelluksen ominaisuuksia:
 
