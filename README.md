@@ -4,6 +4,7 @@ Vieraiden kielten kirjoitusmerkkien opetussovellus kielten opiskelun tueksi.
 Sovelluksen avulla voidaan järjestää verkkokursseja eri kielten kirjoitusjärjestelmien opiskeluun. Kursseilla on tekstimateriaalia ja automaattisesti tarkastettavia tehtäviä. Jokainen käyttäjä on opettaja tai opiskelija. Kursseilla voidaan opettaa sellaisia kieliä, jotka eivät käytä latinalaista aakkostoa (esim. kreikka, heprea, akkadi, sumeri), ja kielen opiskelu koostuu tällöin kurssilla esimerkiksi kahdesta tasosta, joista jokaisen tarkoituksena on tutustua paremmin kielen kirjoitusjärjestelmään: 
 1. kirjoitusjärjestelmään kuuluvien merkkien harjoittelu (mikäli merkkejä on kielessä paljon, voi olla tarpeen ja hyödyllistä järjestää useampi kurssi)
 2. ja opituilla merkeillä kirjoitettujen yksinkertaisten sanojen opettelu.
+
 Näiden sovelluksen tasojen läpäisemisen jälkeen siirtyminen kielen varsinaiseen opiskeluun pitäisi olla helpompaa, kun kielen merkistö on osin tai kokonaan tuttu.
 
 Sovelluksen ominaisuuksia:
