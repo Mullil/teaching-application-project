@@ -1,0 +1,32 @@
+<form action="/editcourse/{{url_course_name}}" method = "post">
+Täällä voit lisätä kurssillasi {{course_name}} opetettavia merkkejä ja sanoja.
+<p>
+Voit lisätä kurssillesi kerralla sekä uuden merkin että uuden sanan!
+<p>
+<input type="text" name = "character"> Syötä merkki
+<p>
+<input type="text" name = "character_transliteration"> Syötä merkin translitteraatio
+<p>
+<input type="text" name="word"> syötä sana
+<p>
+<input type="text" name = "word_translation"> syötä sanan käännös
+<p>
+<input type="submit" value = "Lisää">
+<br>
+Voit lisätä kurssille opetusmateriaalia <a href = "/coursematerial/{{url_course_name}}">täältä</a>
+</form>
+<p>
+<p>
+Lisätyt merkit:
+<br>
+{% for character in course_characters %}
+{{character[0]}} | {{character[1]}}
+<br>
+{% endfor %}
+<p>
+Lisätyt sanat:
+<br>
+{% for word in course_words %}
+{{word[0]}}  |  {{word[1]}}
+<br>
+{% endfor %}

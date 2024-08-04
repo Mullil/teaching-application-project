@@ -1,0 +1,12 @@
+Moi {{teacher_name}}
+<br>
+<a href="/logout">Kirjaudu ulos</a>
+<p>
+Luomasi kurssit:
+<p>
+{% for course in own_courses %}
+{{course[0]}}
+<br>
+{% endfor %}
+<br>
+Voit luoda kurssin <a href="/teacher/{{teacher_name}}/createcourse">täältä</a>
