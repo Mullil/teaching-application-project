@@ -7,8 +7,11 @@ Tällä hetkellä normaalit käyttäjät (eli ei-opettajat) näkevät kirjaudutt
 Sovellus ei ole testattavissa Fly.iossa, joten alla on ohjeet sovelluksen käynnistämiseksi paikallisesti:
 
 Kloonaa repositorio koneellesi ja siirry sen juurikansioon. Luo .env-tiedosto ja määritä sen sisältö seuraavalla tavalla:
+
 DATABASE_URL="tietokantasi-paikallinen-osoite"
+
 SECRET_KEY=salainen-avain
+
 Seuraavaksi aktivoi virtuaaliympäristö komennoilla
 python3 -m venv venv
 source venv/bin/activate
