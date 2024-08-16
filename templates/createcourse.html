@@ -1,3 +1,5 @@
+{% extends "teacher_layout.html" %}
+{% block content %}
 <form action="/teacher/{{teacher_name}}/createcourse" method="post">
 Kurssin nimi: <input type = "text" name = "course_name">
 <p>
@@ -6,4 +8,4 @@ Kurssin kuvaus: <input type = "text" name = "course_description">
 Luo kurssi ja siirry lisäämään kurssille materiaalia:
 <input type = "submit" value = "Luo kurssi"> 
 </form>
-
+{% endblock %}
