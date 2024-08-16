@@ -72,14 +72,14 @@ def course_teacher(name):
 
 
 def return_courses():
-    sql = text("SELECT name, teacher, description FROM courses")
+    sql = text("SELECT name, teacher, description, url_name FROM courses")
     result = db.session.execute(sql)
     courses = result.fetchall()
     if courses is not None:
         return courses
 
 def return_own_courses(teacher):
-    sql = text("SELECT name FROM courses WHERE teacher=:teacher")
+    sql = text("SELECT name, url_name FROM courses WHERE teacher=:teacher")
     result = db.session.execute(sql, {"teacher":teacher})
     courses = result.fetchall()
     return courses
@@ -95,3 +95,26 @@ def return_course_characters(course_id):
     result = db.session.execute(sql, {"course_id":course_id})
     characters = result.fetchall()
     return characters
+
+def return_course_material(course_id):
+    sql = text("SELECT material FROM course_material WHERE course_id=:course_id")
+    result = db.session.execute(sql, {"course_id":course_id})
+    material = result.fetchall()
+    return material
+
+def enroll(user_id, course_id) #user is enrolled in a course
+    try:
+        sql = text("""INSERT INTO enrollments (user_id, course_id)
+                      VALUES (:user_id, :course_id)""")
+        db.session.execute(sql, {"user_id":user_id, "course_id":course_id})
+        db.session.commit()
+    except:
+        return
+
+def return_enrolled_courses(user_id): #returns the courses the user is enrolled in
+    sql = text("""SELECT c.name, c.teacher, c.description, c.url_name
+                  FROM courses c JOIN enrollments e ON c.id=e.course_id
+                  WHERE e.user_id=:user_id""")
+    result = db.session.execute(sql, {"user_id":user_id})
+    enrolled_courses = result.fetchall()
+    return enrolled_courses
