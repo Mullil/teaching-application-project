@@ -96,11 +96,21 @@ def add_course_material(url_course_name):
         if courses.add_material(course_material, course_id):
             return redirect("/teacher")
 
+@app.route("/courses", methods=["GET"])
+def all_courses():
+    course_info = courses.return_courses()
+    if request.method == "GET":
+        return render_template("courses.html", course_info = course_info)
 
-
-
-
-
+@app.route("/exercises/<url_course_name>", methods=["GET"])
+def exercises(url_course_name):
+    course_name = courses.decode_url(url_course_name)
+    course_id = courses.course_id(course_name)
+    course_material = courses.return_course_material(course_id)
+    if request.method == "GET":
+        user_id = users.user_id()
+        courses.enroll(user_id, course_id)
+        return render_template("exercises.html", url_course_name = url_course_name, course_name = course_name, course_material = course_material)
 
 
 
