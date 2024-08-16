@@ -37,4 +37,10 @@ def logout():
 def teacher_id():
     return session.get("teacher_id",0)
 
+def teacher_name(teacher_id):
+    sql = text("SELECT username FROM teachers WHERE id=:teacher_id")
+    result = db.session.execute(sql, {"teacher_id":teacher_id})
+    name = result.fetchone()
+    return name[0]
+
 
