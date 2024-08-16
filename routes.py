@@ -4,8 +4,9 @@ import users, teachers, courses
 
 @app.route("/")
 def index():
-    course_info = courses.return_courses()
-    return render_template("index.html", course_info = course_info)
+    user_id = users.user_id()
+    my_courses = courses.return_enrolled_courses(user_id)
+    return render_template("index.html", my_courses = my_courses)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -18,9 +19,7 @@ def login():
         if users.login(username, password):
             return redirect("/")
         if teachers.login(username, password):
-            return redirect(f"/teacher/{username}")
-        else:
-            return render_template("error.html", notification="Väärä käyttäjätunnus tai salasana")
+            return redirect("/teacher")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -30,15 +29,11 @@ def register():
         username = request.form.get("username")
         password = request.form.get("password")
         password_again = request.form.get("password_again")
-        if password != password_again:
-            return render_template("error.html", notification="Syötit eri salasanat")
         teacher = "teacher" in request.form
         if teacher and teachers.register(username, password):
-            return redirect(f"/teacher/{username}")
+            return redirect("/teacher")
         if users.register(username, password):
             return redirect("/")
-        else:
-            return render_template("error.html", notification="Rekisteröinti epäonnistui")
 
 
 @app.route("/logout")
@@ -49,8 +44,10 @@ def logout():
         teachers.logout()
     return redirect("/")
 
-@app.route("/teacher/<teacher_name>")
-def teacher_view(teacher_name):
+@app.route("/teacher")
+def teacher_view():
+    teacher_id = teachers.teacher_id()
+    teacher_name = teachers.teacher_name(teacher_id)
     own_courses = courses.return_own_courses(teacher_name)
     return render_template("teacher.html", teacher_name = teacher_name, own_courses = own_courses)
 
@@ -65,8 +62,6 @@ def create_course(teacher_name):
         url_course_name = courses.encode_parameter(course_name)
         if courses.create_course(course_name, teacher_name, course_description):
             return redirect(f"/editcourse/{url_course_name}")
-        else:
-            return render_template("error.html", notification="Kurssin luominen epäonnistui")
 
 @app.route("/editcourse/<url_course_name>", methods=["GET", "POST"])
 def edit_course(url_course_name):
@@ -98,11 +93,8 @@ def add_course_material(url_course_name):
     if request.method == "POST":
         course_material = request.form.get("course_material")
         course_id = courses.course_id(course_name)
-        course_teacher = courses.course_teacher(course_name)
         if courses.add_material(course_material, course_id):
-            return redirect(f"/teacher/{course_teacher}")
-        else:
-            return render_template("error.html", notification = f"{course_id}")
+            return redirect("/teacher")
 
 
 
