@@ -1,3 +1,5 @@
+{% extends "user_layout.html" %}
+{% block content %}
 {% if session.user_id %}
 {% if my_courses %}
 Omat kurssini
@@ -23,3 +25,4 @@ Kirjaudu sisään:
 Eikö sinulla ole vielä käyttäjää?
 <a href="/register">Rekisteröidy</a>
 {% endif %}
+{% endblock %}
