@@ -1,0 +1,26 @@
+{% extends "user_layout.html" %}
+
+{% block content %}
+Opetusmateriaali:
+<p>
+{% for material in course_material %}
+{{material[0]}}
+<br>
+{% endfor %}
+<hr>
+Tehtävät:
+<p>
+<form action="1/{{url_course_name}}" method="get">
+	Aloita tästä:
+	<br>
+	<button type="Submit">Merkkien harjoittelu</button>
+	<hr>
+</form>
+
+<form action="2/{{url_course_name}}" method="get">
+	Tehtyäsi ensimmäisen tehtävän voit siirtyä tähän:
+	<br>
+	<button type="Submit">Sanojen harjoittelu</button>
+</form>
+
+{% endblock %}

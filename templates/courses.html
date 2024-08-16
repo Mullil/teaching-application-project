@@ -1,0 +1,13 @@
+{% extends "user_layout.html" %}
+{% block content %}
+Voit valita seuraavista kursseista:
+<p>
+{% for course in course_info %}
+Kurssi: {{course[0]}} | Opettaja {{course[1]}}
+<p>
+Kuvaus: {{course[2]}}
+<br>
+<a href="/exercises/{{course[3]}}">Liity kurssille</a>
+<hr>
+{% endfor %}
+{% endblock %}
