@@ -1,3 +1,5 @@
+{% extends "teacher_layout.html" %}
+{% block content %}
 Moi {{teacher_name}}
 <br>
 <a href="/logout">Kirjaudu ulos</a>
@@ -10,5 +12,4 @@ Luomasi kurssit:
 <a href="/statistics/{{course[1]}}">Tilastot</a>
 <hr>
 {% endfor %}
-<br>
-Voit luoda kurssin <a href="/teacher/{{teacher_name}}/createcourse">täältä</a>
+{% endblock %}
