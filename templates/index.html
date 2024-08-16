@@ -1,12 +1,18 @@
 {% if session.user_id %}
-Voit valita seuraavista kursseista:
-<p>
-{% for course in course_info %}
+{% if my_courses %}
+Omat kurssini
+<hr>
+{% for course in my_courses %}
 Kurssi: {{course[0]}} | Opettaja: {{course[1]}}
 <p>
 Kuvaus: {{course[2]}}
+<br>
+<a href="/exercises/{{course[3]}}">Valitse</a>
 <hr>
 {% endfor %}
+{% else %}
+Et ole vielä liittynyt kursseille.
+{% endif %}
 <a href="/logout">Kirjaudu ulos</a>
 
 {% else %}
