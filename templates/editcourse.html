@@ -1,3 +1,5 @@
+{% extends "teacher_layout.html" %}
+{% block content %}
 <form action="/editcourse/{{url_course_name}}" method = "post">
 Täällä voit lisätä kurssillasi {{course_name}} opetettavia merkkejä ja sanoja.
 <p>
@@ -30,3 +32,4 @@ Lisätyt sanat:
 {{word[0]}}  |  {{word[1]}}
 <br>
 {% endfor %}
+{% endblock %}
