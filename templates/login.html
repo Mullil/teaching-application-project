@@ -1,3 +1,5 @@
+{% extends "user_layout.html" %}
+{% block content %}
 <form action = "/login" method = "post">
 Käyttäjätunnus:
 <input type = "text" name = "username">
@@ -10,4 +12,4 @@ Salasana:
 </form>
 <p>
 Jos et ole luonut vielä käyttäjätunnusta, voit rekisteröityä <a href = "/register">täältä</a>
-
+{% endblock %}
