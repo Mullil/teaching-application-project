@@ -1,0 +1,90 @@
+body {
+	margin: auto;
+	max-width: 50em;
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	background: BurlyWood;
+}
+
+nav li {
+	display: inline-block;
+	padding: .7em 1em .5em;
+	background: #b27b6b;
+	border-radius: .5em;
+	margin: .2em;
+}
+
+.header {
+	background: #de804e;
+	font-weight: bold;
+	padding: 2em 1em;
+	font-size: 2em;
+	border-radius: .5em;
+	color: #240017;
+}
+
+.content {
+	background: #ffe5df;
+	padding: 1.5em 2em;
+	border-radius: .5em
+	
+}
+
+nav ul {
+	padding: 0;
+	margin: .5em;
+	text-align: center;
+}
+
+nav li a {
+	text-decoration: none;
+	color: #000;
+}
+
+nav li:hover {
+	background-color: #b26b6b;
+}
+
+a {
+	text-decoration: none;
+	color: #240017;
+	font-weight: bold;
+}
+
+a:hover {
+	color: #282017;
+	text-decoration: underline;
+	transition: color 0.3s ease;
+}
+
+button {
+	background-color: #c4b4d3;
+	color: #240017;
+	border: none
+	padding: .7em 1em .5em;
+	border-radius: .5em;
+
+}
+
+button:hover {
+	background-color: #cab4d3;
+
+
+input[type="text"] {
+	background-color: #f5f5f5;
+	border: .2em solid #cccccc;
+}
+
+input[type="password"] {
+	background-color: #f5f5f5;
+	border: .2em solid #cccccc;
+}
+
+input[type="text"]:focus {
+	border-color: #240017;
+	outline: none
+}
+
+input[type="password"]:focus {
+	border-color: #240017;
+	outline: none
+}
