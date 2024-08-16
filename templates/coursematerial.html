@@ -1,3 +1,5 @@
+{% extends "teacher_layout.html" %}
+{% block content %}
 <form action="/coursematerial/{{url_course_name}}" method = "post">
 Voit lisätä opetusmateriaalia kurssillesi {{course_name}}:
 <p>
@@ -5,3 +7,4 @@ Voit lisätä opetusmateriaalia kurssillesi {{course_name}}:
 <br>
 <input type = "submit" value = "Lisää materiaalia">
 </form>
+{% endblock %}
