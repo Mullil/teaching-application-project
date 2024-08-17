@@ -1,0 +1,18 @@
+{% extends "user_layout.html" %}
+
+{% block content %}
+Syötä kenttiin sanojen käännökset
+<hr>
+<form action = "/answers/{{url_course_name}}" method = "post">
+{% for word in words %}
+<input type = "hidden" name = "exercise" value = "2">
+<input type = "hidden" name = "question" value = "{{word[0]}}">
+<input type = "hidden" name = "correct_answer" value = "{{word[1]}}">
+{{word[0]}}
+<br>
+<input type = "text" name = "answer">
+<p>
+{% endfor %}
+<input type = "submit" value = "Lähetä vastaukset">
+</form>
+{% endblock %}
