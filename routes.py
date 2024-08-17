@@ -1,6 +1,6 @@
 from app import app
 from flask import session, render_template, request, redirect
-import users, teachers, courses
+import users, teachers, courses, statistics
 import random
 
 @app.route("/")
@@ -147,3 +147,19 @@ def answers(url_course_name):
         user_id = users.user_id()
         courses.exercise_passed(answers, course_id, user_id, exercise_number)
         return render_template("answers.html", course_name = course_name, url_course_name = url_course_name, answers = answers)
+
+@app.route("/userstatistics", methods=["GET"])
+def user_statistics():
+    if request.method == "GET":
+        user_id = users.user_id()
+        user_stats = statistics.return_user_stats(user_id)
+        return render_template("user_stats.html", user_stats = user_stats)
+
+@app.route("/statistics/<url_course_name>", methods=["GET"])
+def course_statistics(url_course_name):
+    course_name = courses.decode_url(url_course_name)
+    course_id = courses.course_id(course_name)
+    course_stats = statistics.return_course_stats(course_id)
+    if request.method == "GET":
+        return render_template("course_stats.html", course_stats = course_stats)
+
