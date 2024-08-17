@@ -1,6 +1,7 @@
 from app import app
 from flask import session, render_template, request, redirect
 import users, teachers, courses
+import random
 
 @app.route("/")
 def index():
@@ -112,6 +113,37 @@ def exercises(url_course_name):
         courses.enroll(user_id, course_id)
         return render_template("exercises.html", url_course_name = url_course_name, course_name = course_name, course_material = course_material)
 
+@app.route("/exercises/1/<url_course_name>", methods=["GET"])
+def exercise1(url_course_name):
+    course_name = courses.decode_url(url_course_name)
+    url_course_name = courses.encode_parameter(course_name)
+    course_id = courses.course_id(course_name)
+    characters = courses.return_course_characters(course_id)
+    random.shuffle(characters)
+    if request.method == "GET":
+        return render_template("exercise1.html", course_name = course_name, url_course_name = url_course_name, characters = characters)
 
+@app.route("/exercises/2/<url_course_name>", methods=["GET"])
+def exercise1(url_course_name):
+    course_name = courses.decode_url(url_course_name)
+    url_course_name = courses.encode_parameter(course_name)
+    course_id = courses.course_id(course_name)
+    words = courses.return_course_words(course_id)
+    random.shuffle(words)
+    if request.method == "GET":
+        return render_template("exercise2.html", course_name = course_name, url_course_name = url_course_name, words = words)
 
-
+@app.route("/answers/<url_course_name>", methods=["POST"]) #answers route shows the users answers to exercises with correct answers and points given
+def answers(url_course_name):
+    course_name = courses.decode_url(url_course_name)
+    url_course_name = courses.encode_parameter(course_name)
+    course_id = courses.course_id(course_name)
+    if request.method == "POST":
+        exercise_number = request.form.get("exercise")
+        questions = request.form.getlist("question") #questions are the words or characters in an exercise
+        input_answers = request.form.getlist("answer")
+        correct_answers = request.form.getlist("correct_answer")
+        answers = courses.return_answers(questions, input_answers, correct_answers)
+        user_id = users.user_id()
+        courses.exercise_passed(answers, course_id, user_id, exercise_number)
+        return render_template("answers.html", course_name = course_name, url_course_name = url_course_name, answers = answers)
