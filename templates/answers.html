@@ -1,0 +1,13 @@
+{% extends "user_layout.html" %}
+
+{% block content %}
+Vastauksesi:
+<hr>
+{% for answer in answers %}
+{{answer[0]}}: {{answer[1]}}     | Oikea vastaus: {{answer[2]}}
+<br>
+{{answer[3]}}p
+<p>
+{% endfor %}
+{% endblock %}
+
