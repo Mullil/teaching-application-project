@@ -57,10 +57,10 @@ def course_id(name):
     if course_id is not None:
         return course_id[0]
 
-def encode_parameter(course_name):
+def encode_parameter(course_name): #the name of the course is made suitable for an url
     return urllib.parse.quote(course_name)
 
-def decode_url(url_course_name):
+def decode_url(url_course_name): #returns the real name of a course
     return urllib.parse.unquote(url_course_name)
 
 def course_teacher(name):
@@ -118,3 +118,39 @@ def return_enrolled_courses(user_id): #returns the courses the user is enrolled 
     result = db.session.execute(sql, {"user_id":user_id})
     enrolled_courses = result.fetchall()
     return enrolled_courses
+
+def return_answers(questions, input_answers, correct_answers): #makes a list with lists that have the character or word in question, the user's answer,
+        answer_list = []                                       #the correct answer and 1 or 0 depending on whether the answer was correct or not
+        for i in range(0, len(questions)):
+            result = check_answer(input_answers[i], correct_answers[i])
+            answer_list.append([questions[i], input_answers[i], correct_answers[i], result])
+        return answer_list
+
+def check_answer(input_answer, correct_answer):
+    if input_answer == correct_answer:
+        return 1
+    else:
+        return 0
+
+def exercise_passed(answer_list, course_id, user_id, exercise_number): #if all answers are correct, the exercise from the course is passed
+    for answer in answer_list: #check all answers
+        if answer[3] != 1:
+            return
+    if exercise_number == "1": #exercise 1 is passed
+        try:
+            sql = text("UPDATE enrollments SET exercise1 = 1 WHERE course_id=:course_id AND user_id=:user_id")
+            db.session.execute(sql, {"course_id":course_id, "user_id":user_id})
+            db.session.commit()
+        except:
+            return
+    if exercise_number == "2": #exercise 2 is passed
+        try:
+            sql = text("UPDATE enrollments SET exercise2 = 1 WHERE course_id=:course_id AND user_id=:user_id")
+            db.session.execute(sql, {"course_id":course_id, "user_id":user_id})
+            db.session.commit()
+        except:
+            return
+
+
+
+
