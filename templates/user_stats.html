@@ -1,0 +1,13 @@
+{% extends "user_layout.html" %}
+{% block content %}
+{% if user_stats %}
+Kurssit | pisteet
+<hr>
+{% for stats in user_stats %}
+{{stats[0]}} | {{stats[1]}}/2p
+<hr>
+{% endfor %}
+{% else %}
+Liity kursseille, jotta näet tilastosi!
+{% endif %}
+{% endblock %}
