@@ -1,14 +1,13 @@
 # teaching-application-project
 Sovelluksen nykytila:
 
-Sovellukseen voi nyt kirjautua käyttäjänä ja opettajana. Opettaja voi luoda kurssin, jolle annetaan ensin nimi ja kuvaus, ja sen jälkeen voidaan lisätä kurssilla opetettavia merkkejä ja sanoja. Lisätyt sanat ja merkit ilmestyvät sivun alareunaan sitä tahtia, kun niitä lisätään. Sanojen/merkkien lisäämisen jälkeen kurssille voidaan lisätä opetusmateriaalia.
-Tällä hetkellä normaalit käyttäjät (eli ei-opettajat) näkevät kirjauduttuaan vain luodut kurssit, näiden kuvaukset ja kurssin luoneen opettajan käyttäjänimen. Käyttäjät eivät siis vielä pääse liittymään kursseille tai näkemään kurssin opetusmateriaalia. Opettajat näkevät kirjauduttuaan listan luomistaan kursseista.
+Sovellukseen voi nyt kirjautua käyttäjänä ja opettajana. Opettaja voi luoda kurssin, jolle annetaan ensin nimi ja kuvaus, ja sen jälkeen voidaan lisätä kurssilla opetettavia merkkejä ja sanoja. Lisätyt sanat ja merkit ilmestyvät sivun alareunaan sitä tahtia, kun niitä lisätään. Kurssille voi myös lisätä opetusmateriaalia. Käyttäjät voivat katsella kaikkia luotuja kursseja sekä liittymään näille. Käyttäjien etusivulla näkyvät ne kurssit, joille he ovat liittyneet. Käyttäjät voivat myös katsoa tilastojaan niistä kursseista, joille he ovat liittyneet. Käyttäjät voivat tehdä kurssin tehtäviä, ja saavat tehtävät lähetettyään palautteen vastauksistaan jokaiseen kysymykseen. Jos kaikki kysymykset ovat oikein, tehtävä katsotaan suoritetuksi, ja sen suoritus lisätään tilastoihin. Opettajat voivat nyt kurssin luonnin jälkeenkin lisätä kurssille merkkejä, sanoja ja materiaalia, ja lisäksi nähdä kurssiensa tilastoja. Sovelluksessa on nyt siis mahdollista tehdä suurin piirtein kaikki, mitä alla "sovelluksen ominaisuudet" -kohdassa mainitaan, poislukien kurssin poistaminen, mikä on vielä tarkoituksena lisätä. Lisäksi sovelluksen ulkoasua ja käytettävyyttä on vielä tarkoitus parantaa.
 
 Sovellus ei ole testattavissa Fly.iossa, joten alla on ohjeet sovelluksen käynnistämiseksi paikallisesti:
 
 Kloonaa repositorio koneellesi ja siirry sen juurikansioon. Luo .env-tiedosto ja määritä sen sisältö seuraavalla tavalla:
 
-DATABASE_URL="tietokantasi-paikallinen-osoite"
+DATABASE_URL=tietokantasi-paikallinen-osoite
 
 SECRET_KEY=salainen-avain
 
@@ -19,7 +18,7 @@ source venv/bin/activate
 asenna sovelluksen riippuvuudet komennolla
 pip install -r ./requirements.txt
 
-ja määritä tietokannan skeema komennolla'
+ja määritä tietokannan skeema komennolla
 psql < schema.sql
 
 Tämän jälkeen voit käynnistää sovelluksen komennolla
