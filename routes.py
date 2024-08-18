@@ -124,7 +124,7 @@ def exercise1(url_course_name):
         return render_template("exercise1.html", course_name = course_name, url_course_name = url_course_name, characters = characters)
 
 @app.route("/exercises/2/<url_course_name>", methods=["GET"])
-def exercise1(url_course_name):
+def exercise2(url_course_name):
     course_name = courses.decode_url(url_course_name)
     url_course_name = courses.encode_parameter(course_name)
     course_id = courses.course_id(course_name)
