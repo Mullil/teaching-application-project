@@ -12,6 +12,7 @@ def index():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    error_message = "Väärä käyttäjätunnus tai salasana!"
     if request.method == "GET":
         return render_template("login.html")
     if request.method == "POST":
@@ -21,9 +22,12 @@ def login():
             return redirect("/")
         if teachers.login(username, password):
             return redirect("/teacher")
+        else:
+            return render_template("login.html", error_message = error_message)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    error_message = "Rekisteröityminen epäonnistui"
     if request.method == "GET":
         return render_template("register.html")
     if request.method == "POST":
@@ -35,6 +39,8 @@ def register():
             return redirect("/teacher")
         if users.register(username, password):
             return redirect("/")
+        else:
+            return render_template("register.html", error_message = error_message)
 
 
 @app.route("/logout")
