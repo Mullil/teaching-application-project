@@ -5,23 +5,23 @@ from sqlalchemy.sql import text
 import re
 
 def login(username, password):
-    sql = text("SELECT id, password FROM teachers WHERE username=:username")
-    result = db.session.execute(sql, {"username":username})
-    teacher = result.fetchone()
-    if not teacher:
+    try:
+        sql = text("SELECT id, password FROM teachers WHERE username=:username")
+        result = db.session.execute(sql, {"username":username})
+        teacher = result.fetchone()
+        if check_password_hash(teacher.password, password):
+            session["teacher_id"] = teacher.id
+            return True
+    except:
         return False
-    if check_password_hash(teacher.password, password):
-        session["teacher_id"] = teacher.id
-        return True
-    return False
 
 
 
 def register(username, password):
-    hash_value = generate_password_hash(password)
-    if not re.match("^[a-zA-Z0-9äöÄÖ]+$", username):
-        return False
     try:
+        if not re.match("^[a-zA-Z0-9äöÄÖ]+$", username):
+            return False
+        hash_value = generate_password_hash(password)
         sql1 = text("INSERT INTO usernames (username) VALUES (:username)")
         sql2 = text("INSERT INTO teachers (username, password) VALUES (:username,:password)")
         db.session.execute(sql1, {"username":username})

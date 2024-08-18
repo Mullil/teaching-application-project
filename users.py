@@ -6,23 +6,23 @@ import re
 
 
 def login(username, password):
-    sql = text("SELECT id, password FROM users WHERE username=:username")
-    result = db.session.execute(sql, {"username":username})
-    user = result.fetchone()
-    if not user:
+    try:
+        sql = text("SELECT id, password FROM users WHERE username=:username")
+        result = db.session.execute(sql, {"username":username})
+        user = result.fetchone()
+        if check_password_hash(user.password, password):
+            session["user_id"] = user.id
+            return True
+    except:
         return False
-    if check_password_hash(user.password, password):
-        session["user_id"] = user.id
-        return True
-    return False
 
 
 
 def register(username, password):
-    hash_value = generate_password_hash(password)
-    if not re.match("^[a-zA-Z0-9äöÄÖ]+$", username):
-        return False
     try:
+        if not re.match("^[a-zA-Z0-9äöÄÖ]+$", username):
+            return False
+        hash_value = generate_password_hash(password)
         sql1 = text("INSERT INTO usernames (username) VALUES (:username)")
         sql2 = text("INSERT INTO users (username, password) VALUES (:username,:password)")
         db.session.execute(sql1, {"username":username})
