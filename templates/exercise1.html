@@ -3,17 +3,17 @@
 {% block content %}
 Syötä kenttiin merkkien translitteraatiot
 <hr>
-<form action = "/answers/{{url_course_name}}" method = "post">
+<form action="/answers/{{url_course_name}}" method="post">
 {% for character in characters %}
-<input type = "hidden" name = "exercise" value = "1">
-<input type = "hidden" name = "question" value = "{{character[0]}}">
-<input type = "hidden" name = "correct_answer" value = "{{character[1]}}">
+<input type="hidden" name="exercise" value = "1">
+<input type="hidden" name="question" value="{{character[0]}}">
+<input type="hidden" name="correct_answer" value="{{character[1]}}">
 {{character[0]}}
 <br>
-<input type = "text" name = "answer">
+<input type="text" name="answer">
 <p>
 {% endfor %}
-<input type = "submit" value = "Lähetä vastaukset">
+<input type="submit" value="Lähetä vastaukset">
 </form>
 {% endblock %}
 

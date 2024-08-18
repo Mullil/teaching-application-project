@@ -3,21 +3,21 @@
 {% if error_message %}
 <p class="highlight">{{error_message}}</p>
 {% endif %}
-<form action = "/register" method = "post">
+<form action="/register" method="post">
 Käyttäjätunnus:
 <p>
-<input type = "text" name = "username"> (Käyttäjätunnuksessa saa olla vain kirjaimia ja numeroita!)
+<input type="text" name="username"> (Käyttäjätunnuksessa saa olla vain kirjaimia ja numeroita!)
 <p>
 Salasana:
 <p>
-<input type = "password" name = "password">
+<input type="password" name="password">
 <p>
 Syötä salasana uudestaan:
 <p>
-<input type = "password" name = "password_again">
+<input type="password" name="password_again">
 <p>
-<input type = "checkbox" name = "teacher" value = "yes"> Valitse ruutu jos olet opettaja (Vain opettajat voivat luoda kursseja)
+<input type="checkbox" name="teacher" value="yes"> Valitse ruutu jos olet opettaja (Vain opettajat voivat luoda kursseja)
 <p>
-<input type = "submit" value = "Luo käyttäjä">
+<input type="submit" value="Luo käyttäjä">
 </form>
 {% endblock %}

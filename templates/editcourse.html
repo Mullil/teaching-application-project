@@ -1,21 +1,21 @@
 {% extends "teacher_layout.html" %}
 {% block content %}
-<form action="/editcourse/{{url_course_name}}" method = "post">
+<form action="/editcourse/{{url_course_name}}" method="post">
 Täällä voit lisätä kurssillasi {{course_name}} opetettavia merkkejä ja sanoja.
 <p>
 Voit lisätä kurssillesi kerralla sekä uuden merkin että uuden sanan!
 <p>
-<input type="text" name = "character"> Syötä merkki
+<input type="text" name="character"> Syötä merkki
 <p>
-<input type="text" name = "character_transliteration"> Syötä merkin translitteraatio
+<input type="text" name="character_transliteration"> Syötä merkin translitteraatio
 <p>
 <input type="text" name="word"> syötä sana
 <p>
-<input type="text" name = "word_translation"> syötä sanan käännös
+<input type="text" name="word_translation"> syötä sanan käännös
 <p>
-<input type="submit" value = "Lisää">
+<input type="submit" value="Lisää">
 <br>
-Voit lisätä kurssille opetusmateriaalia <a href = "/coursematerial/{{url_course_name}}">täältä</a>
+Voit lisätä kurssille opetusmateriaalia <a href="/coursematerial/{{url_course_name}}">täältä</a>
 </form>
 <p>
 <p>
