@@ -102,7 +102,7 @@ def return_course_material(course_id):
     material = result.fetchall()
     return material
 
-def enroll(user_id, course_id) #user is enrolled in a course
+def enroll(user_id, course_id): #user is enrolled in a course
     try:
         sql = text("""INSERT INTO enrollments (user_id, course_id)
                       VALUES (:user_id, :course_id)""")
