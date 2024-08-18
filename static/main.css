@@ -29,6 +29,11 @@ nav li {
 	
 }
 
+.highlight {
+	color: red;
+	font-weight: bold;
+}
+
 nav ul {
 	padding: 0;
 	margin: .5em;
