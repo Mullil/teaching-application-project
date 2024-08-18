@@ -5,8 +5,9 @@ import urllib.parse
 
 def create_course(name, teacher, description):
     try:
-        sql = text("INSERT INTO courses (name, teacher, description) VALUES (:name, :teacher, :description)")
-        db.session.execute(sql, {"name":name, "teacher":teacher, "description":description})
+        url_name = encode_parameter(name)
+        sql = text("INSERT INTO courses (name, teacher, description, url_name) VALUES (:name, :teacher, :description, :url_name)")
+        db.session.execute(sql, {"name":name, "teacher":teacher, "description":description, "url_name":url_name})
         db.session.commit()
         return True
     except:
