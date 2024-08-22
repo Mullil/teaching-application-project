@@ -1,5 +1,6 @@
 {% extends "user_layout.html" %}
 {% block content %}
+{% if session.user_id %}
 Voit valita seuraavista kursseista:
 <p>
 {% for course in course_info %}
@@ -10,4 +11,7 @@ Kuvaus: {{course[2]}}
 <a href="/exercises/{{course[3]}}">Liity kurssille</a>
 <hr>
 {% endfor %}
+{% else %}
+Kirjaudu sisään nähdäksesi kurssit
+{% endif %}
 {% endblock %}
