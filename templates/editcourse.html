@@ -32,4 +32,8 @@ Lisätyt sanat:
 {{word[0]}}  |  {{word[1]}}
 <br>
 {% endfor %}
+<hr>
+<form action="/deletecourse/{{url_course_name}}" method="post">
+	<a href="/deletecourse/{{url_course_name}}">Poista kurssi</a>
+</form>
 {% endblock %}

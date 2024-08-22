@@ -169,3 +169,12 @@ def course_statistics(url_course_name):
     if request.method == "GET":
         return render_template("course_stats.html", course_stats = course_stats)
 
+
+@app.route("/deletecourse/<url_course_name>", methods=["GET"])
+def delete_course(url_course_name):
+    course_name = courses.decode_url(url_course_name)
+    course_id = courses.course_id(course_name)
+    if request.method == "GET":
+        courses.delete_course(course_id)
+        return redirect("/teacher")
+

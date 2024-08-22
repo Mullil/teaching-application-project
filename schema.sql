@@ -27,21 +27,21 @@ CREATE TABLE courses (
 CREATE TABLE course_material (
 	id SERIAL PRIMARY KEY,
        	material TEXT,
-       	course_id INTEGER REFERENCES courses
+       	course_id INTEGER REFERENCES courses ON DELETE CASCADE
 );
 
 CREATE TABLE words (
 	id SERIAL PRIMARY KEY,
        	word TEXT,
        	translation TEXT,
-       	course_id INTEGER REFERENCES courses
+       	course_id INTEGER REFERENCES courses ON DELETE CASCADE
 );
 
 CREATE TABLE characters (
 	id SERIAL PRIMARY KEY,
        	character TEXT,
        	transliteration TEXT,
-       	course_id INTEGER REFERENCES courses
+       	course_id INTEGER REFERENCES courses ON DELETE CASCADE
 );
 
 CREATE TABLE enrollments (
@@ -51,7 +51,7 @@ CREATE TABLE enrollments (
 	exercise2 INT,
 	PRIMARY KEY (user_id, course_id),
 	FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (course_id) REFERENCES courses(id)
+	FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
 );
 
 

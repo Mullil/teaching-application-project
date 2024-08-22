@@ -153,5 +153,8 @@ def exercise_passed(answer_list, course_id, user_id, exercise_number): #if all a
             return
 
 
-
-
+def delete_course(course_id):
+    sql = text("DELETE FROM courses WHERE id=:course_id")
+    db.session.execute(sql, {"course_id":course_id})
+    db.session.commit()
+    return
