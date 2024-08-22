@@ -23,11 +23,11 @@ def login():
         if teachers.login(username, password):
             return redirect("/teacher")
         else:
-            return render_template("login.html", error_message = error_message)
+            return render_template("login.html", error_message = error_message, username = username, password = password)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    error_message = "Rekisteröityminen epäonnistui"
+    error_message = "Rekisteröityminen epäonnistui!"
     if request.method == "GET":
         return render_template("register.html")
     if request.method == "POST":
@@ -35,12 +35,12 @@ def register():
         password = request.form.get("password")
         password_again = request.form.get("password_again")
         teacher = "teacher" in request.form
-        if teacher and teachers.register(username, password):
+        if teacher and teachers.register(username, password, password_again):
             return redirect("/teacher")
-        if users.register(username, password):
+        if users.register(username, password, password_again):
             return redirect("/")
         else:
-            return render_template("register.html", error_message = error_message)
+            return render_template("register.html", error_message = error_message, username = username, password = password, password_again = password_again)
 
 
 @app.route("/logout")

@@ -6,10 +6,10 @@
 {% endif %}
 <form action="/login" method="post">
 Käyttäjätunnus:
-<input type="text" name="username">
+<input type="text" name="username" value={{username}}>
 <p>
 Salasana:
-<input type="password" name="password">
+<input type="password" name="password" value={{password}}>
 <p>
 
 <input type="submit" value="Kirjaudu sisään">
