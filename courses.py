@@ -98,7 +98,7 @@ def return_course_characters(course_id):
     return characters
 
 def return_course_material(course_id):
-    sql = text("SELECT material FROM course_material WHERE course_id=:course_id")
+    sql = text("SELECT id, material FROM course_material WHERE course_id=:course_id")
     result = db.session.execute(sql, {"course_id":course_id})
     material = result.fetchall()
     return material
@@ -158,3 +158,10 @@ def delete_course(course_id):
     db.session.execute(sql, {"course_id":course_id})
     db.session.commit()
     return
+
+def delete_material(material_id):
+    sql = text("DELETE FROM course_material WHERE id=:material_id")
+    db.session.execute(sql, {"material_id":material_id})
+    db.session.commit()
+    return
+

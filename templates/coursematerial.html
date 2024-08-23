@@ -7,4 +7,10 @@ Voit lisätä opetusmateriaalia kurssillesi {{course_name}}:
 <br>
 <input type="submit" value="Lisää materiaalia">
 </form>
+<p>
+Lisätty materiaali:
+{% for material in course_material %}
+<p>
+{{material[1]}} <a href="/deletematerial/{{material[0]}}">Poista</a>
+{% endfor %}
 {% endblock %}
