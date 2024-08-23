@@ -35,9 +35,9 @@ def register():
         password = request.form.get("password")
         password_again = request.form.get("password_again")
         teacher = "teacher" in request.form
-        if teacher and teachers.register(username, password, password_again):
+        if password and teacher and teachers.register(username, password, password_again):
             return redirect("/teacher")
-        if users.register(username, password, password_again):
+        if password and users.register(username, password, password_again):
             return redirect("/")
         else:
             return render_template("register.html", error_message = error_message, username = username, password = password, password_again = password_again)
