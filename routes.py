@@ -59,8 +59,10 @@ def teacher_view():
     return render_template("teacher.html", teacher_name = teacher_name, own_courses = own_courses)
 
 
-@app.route("/teacher/<teacher_name>/createcourse", methods=["GET", "POST"])
-def create_course(teacher_name):
+@app.route("/teacher/createcourse", methods=["GET", "POST"])
+def create_course():
+    teacher_id = teachers.teacher_id()
+    teacher_name = teachers.teacher_name(teacher_id)
     if request.method == "GET":
         return render_template("createcourse.html", teacher_name=teacher_name)
     if request.method == "POST":
