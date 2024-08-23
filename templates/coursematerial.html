@@ -1,5 +1,7 @@
 {% extends "teacher_layout.html" %}
 {% block content %}
+<a href="/editcourse/{{url_course_name}}">Palaa edelliselle sivulle</a>
+<p>
 <form action="/coursematerial/{{url_course_name}}" method = "post">
 Voit lisätä opetusmateriaalia kurssillesi {{course_name}}:
 <p>
