@@ -1,6 +1,6 @@
 {% extends "teacher_layout.html" %}
 {% block content %}
-<form action="/editcourse/{{url_course_name}}" method="post">
+<form action="/editcourse/{{url_course_name}}" method="POST">
 Täällä voit lisätä kurssillasi {{course_name}} opetettavia merkkejä ja sanoja.
 <p>
 Voit lisätä kurssillesi kerralla sekä uuden merkin että uuden sanan!
@@ -16,6 +16,7 @@ Voit lisätä kurssillesi kerralla sekä uuden merkin että uuden sanan!
 <input type="submit" value="Lisää">
 <br>
 Voit lisätä kurssille opetusmateriaalia <a href="/coursematerial/{{url_course_name}}">täältä</a>
+<input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
 </form>
 <p>
 <p>
@@ -33,7 +34,8 @@ Lisätyt sanat:
 <br>
 {% endfor %}
 <hr>
-<form action="/deletecourse/{{url_course_name}}" method="post">
-	<a href="/deletecourse/{{url_course_name}}">Poista kurssi</a>
+<form action="/deletecourse/{{url_course_name}}" method="POST">
+<input type="submit" value="Poista kurssi">
+<input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
 </form>
 {% endblock %}

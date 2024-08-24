@@ -1,5 +1,5 @@
 from app import app
-from flask import session, render_template, request, redirect
+from flask import session, render_template, request, redirect, abort
 import users, teachers, courses, statistics
 import random
 
@@ -66,6 +66,8 @@ def create_course():
     if request.method == "GET":
         return render_template("createcourse.html", teacher_name=teacher_name)
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         course_name = request.form.get("course_name")
         course_description = request.form.get("course_description")
         url_course_name = courses.encode_parameter(course_name)
@@ -81,7 +83,9 @@ def edit_course(url_course_name):
     url_course_name = courses.encode_parameter(course_name)
     if request.method == "GET":
         return render_template("editcourse.html", url_course_name = url_course_name, course_name = course_name, course_characters = course_characters, course_words = course_words)
-    if request.method == "POST":        
+    if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         character = request.form.get("character")
         transliteration = request.form.get("character_transliteration")
         word = request.form.get("word")
@@ -102,6 +106,8 @@ def add_course_material(url_course_name):
     if request.method == "GET":
         return render_template("coursematerial.html", url_course_name = url_course_name, course_name = course_name, course_material = course_material)
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         course_material = request.form.get("course_material")
         if courses.add_material(course_material, course_id):
             return redirect(request.referrer)
@@ -148,6 +154,8 @@ def answers(url_course_name):
     url_course_name = courses.encode_parameter(course_name)
     course_id = courses.course_id(course_name)
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         exercise_number = request.form.get("exercise")
         questions = request.form.getlist("question") #questions are the words or characters in an exercise
         input_answers = request.form.getlist("answer")
@@ -173,16 +181,20 @@ def course_statistics(url_course_name):
         return render_template("course_stats.html", course_stats = course_stats)
 
 
-@app.route("/deletecourse/<url_course_name>", methods=["GET"])
+@app.route("/deletecourse/<url_course_name>", methods=["POST"])
 def delete_course(url_course_name):
     course_name = courses.decode_url(url_course_name)
     course_id = courses.course_id(course_name)
-    if request.method == "GET":
+    if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         courses.delete_course(course_id)
         return redirect("/teacher")
 
-@app.route("/deletematerial/<material_id>", methods=["GET"])
+@app.route("/deletematerial/<material_id>", methods=["POST"])
 def delete_material(material_id):
-    if request.method == "GET":
+    if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         courses.delete_material(material_id)
         return redirect(request.referrer)

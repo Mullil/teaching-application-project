@@ -2,17 +2,21 @@
 {% block content %}
 <a href="/editcourse/{{url_course_name}}">Palaa edelliselle sivulle</a>
 <p>
-<form action="/coursematerial/{{url_course_name}}" method = "post">
+<form action="/coursematerial/{{url_course_name}}" method="POST">
 Voit lisätä opetusmateriaalia kurssillesi {{course_name}}:
 <p>
 <textarea name="course_material" rows="20" cols="60"></textarea>
 <br>
 <input type="submit" value="Lisää materiaalia">
+<input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
 </form>
 <p>
 Lisätty materiaali:
 {% for material in course_material %}
+<form action="/deletematerial/{{material[0]}}" method="POST">
 <p>
-{{material[1]}} <a href="/deletematerial/{{material[0]}}">Poista</a>
+{{material[1]}} <input type="submit" value="Poista">
 {% endfor %}
+<input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
+</form>
 {% endblock %}
