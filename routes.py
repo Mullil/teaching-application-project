@@ -111,6 +111,9 @@ def add_course_material(url_course_name):
         course_material = request.form.get("course_material")
         if courses.add_material(course_material, course_id):
             return redirect(request.referrer)
+        else:
+            error_message = "Materiaalin lisääminen epäonnistui!"
+            return render_template("coursematerial.html", error_message = error_message, url_course_name = url_course_name, course_name = course_name, course_material = course_material)
 
 @app.route("/courses", methods=["GET"])
 def all_courses():

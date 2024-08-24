@@ -2,6 +2,9 @@
 {% block content %}
 <a href="/editcourse/{{url_course_name}}">Palaa edelliselle sivulle</a>
 <p>
+{% if error_message %}
+<p class="highlight">{{error_message}}</p>
+{% endif %}
 <form action="/coursematerial/{{url_course_name}}" method="POST">
 Voit lisätä opetusmateriaalia kurssillesi {{course_name}}:
 <p>
