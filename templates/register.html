@@ -3,16 +3,17 @@
 {% if error_message %}
 <p class="highlight">{{error_message}}</p>
 {% endif %}
-<form action="/register" method="post">
+<form action="/register" method="POST">
 Käyttäjätunnus:
 <p>
-<input type="text" name="username", value={{username}}> (Käyttäjätunnuksessa saa olla vain kirjaimia ja numeroita!)
+<input type="text" name="username" value={{username}}>
+<u> Käyttäjätunnuksessa saa olla vain kirjaimia ja numeroita! </u>
 <p>
 Salasana:
 <p>
 <input type="password" name="password" value={{password}}>
 <p>
-Syötä salasana uudestaan:
+Syötä salasana uudelleen:
 <p>
 <input type="password" name="password_again" value={{password_again}}>
 <p>

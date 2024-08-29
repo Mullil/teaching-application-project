@@ -1,10 +1,10 @@
 {% extends "user_layout.html" %}
 {% block content %}
 {% if user_stats %}
-Kurssit | pisteet
+Kurssit | Suoritetut tehtävät
 <hr>
 {% for stats in user_stats %}
-{{stats[0]}} | {{stats[1]}}/2p
+{{stats[0]}} | {{stats[1]}}/2
 <hr>
 {% endfor %}
 {% else %}

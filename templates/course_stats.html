@@ -1,12 +1,14 @@
 {% extends "teacher_layout.html" %}
 {% block content %}
 {% if course_stats %}
-Opiskelijat: | Pisteet
+Opiskelijat | Suoritetut tehtävät
 <p>
 {% for course in course_stats %}
-{{course[0]}} {{course[1]}}
+{{course[0]}} | {{course[1]}}
 <p>
 {% endfor %}
+{% else %}
+Kursseillasi ei ole vielä osallistujia.
 {% endif %}
 {% endblock %}
 

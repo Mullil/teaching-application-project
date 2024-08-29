@@ -2,9 +2,14 @@
 {% block content %}
 <form action="/editcourse/{{url_course_name}}" method="POST">
 Täällä voit lisätä kurssillasi {{course_name}} opetettavia merkkejä ja sanoja.
+Voit lisätä kurssillesi kerralla sekä uuden merkin että uuden sanan, mutta jos et syötä merkille translitteraatiota tai sanalle käännöstä, ei merkkiä tai sanaa lisätä!
 <p>
-Voit lisätä kurssillesi kerralla sekä uuden merkin että uuden sanan!
+Voit lisätä kurssille opetusmateriaalia <a href="/coursematerial/{{url_course_name}}">täältä</a>
+<hr>
 <p>
+{% if error_message %}
+<p class="highlight">{{error_message}}</p>
+{% endif %}
 <input type="text" name="character"> Syötä merkki
 <p>
 <input type="text" name="character_transliteration"> Syötä merkin translitteraatio
@@ -15,7 +20,6 @@ Voit lisätä kurssillesi kerralla sekä uuden merkin että uuden sanan!
 <p>
 <input type="submit" value="Lisää">
 <br>
-Voit lisätä kurssille opetusmateriaalia <a href="/coursematerial/{{url_course_name}}">täältä</a>
 <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
 </form>
 <p>
