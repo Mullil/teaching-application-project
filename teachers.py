@@ -22,7 +22,7 @@ def login(username, password):
 def register(username, password, password_again):
     if password != password_again:
         return False
-    if len(username) > 25 or len(password > 100):
+    if len(username) > 25 or len(password) > 100:
         return False
     try:
         if not re.match("^[a-zA-Z0-9äöÄÖ]+$", username):
