@@ -3,6 +3,7 @@
 <form action="/teacher/createcourse" method="POST">
 {% if error_message %}
 <p class="highlight">{{error_message}}</p>
+{% endif %}
 Kurssin nimi: <input type="text" name="course_name">
 <p>
 Kurssin kuvaus: <input type="text" name="course_description">
