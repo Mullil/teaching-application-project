@@ -6,6 +6,8 @@ import urllib.parse
 def create_course(name, teacher, description):
     if len(name) > 50:
         return False
+    if not name:
+        return False
     try:
         url_name = encode_parameter(name)
         sql = text("INSERT INTO courses (name, teacher, description, url_name) VALUES (:name, :teacher, :description, :url_name)")
