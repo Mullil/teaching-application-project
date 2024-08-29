@@ -64,7 +64,7 @@ def create_course():
     teacher_id = teachers.teacher_id()
     teacher_name = teachers.teacher_name(teacher_id)
     if request.method == "GET":
-        return render_template("createcourse.html", teacher_name=teacher_name)
+        return render_template("createcourse.html", teacher_name = teacher_name)
     if request.method == "POST":
         if session["csrf_token"] != request.form["csrf_token"]:
             abort(403)
@@ -73,6 +73,9 @@ def create_course():
         url_course_name = courses.encode_parameter(course_name)
         if courses.create_course(course_name, teacher_name, course_description):
             return redirect(f"/editcourse/{url_course_name}")
+        else:
+            error_message = "Kurssin luominen epäonnistui"
+            return render_template("createcourse.html", teacher_name = teacher_name, error_message = error_message)
 
 @app.route("/editcourse/<url_course_name>", methods=["GET", "POST"])
 def edit_course(url_course_name):
@@ -81,7 +84,12 @@ def edit_course(url_course_name):
     course_characters = courses.return_course_characters(course_id)
     course_words = courses.return_course_words(course_id)
     url_course_name = courses.encode_parameter(course_name)
+    teacher_id = teachers.teacher_id()
+    teacher_name = teachers.teacher_name(teacher_id)
+    course_teacher = courses.course_teacher(course_name)
     if request.method == "GET":
+        if course_teacher != teacher_name:
+            abort(403)
         return render_template("editcourse.html", url_course_name = url_course_name, course_name = course_name, course_characters = course_characters, course_words = course_words)
     if request.method == "POST":
         if session["csrf_token"] != request.form["csrf_token"]:
@@ -90,8 +98,9 @@ def edit_course(url_course_name):
         transliteration = request.form.get("character_transliteration")
         word = request.form.get("word")
         translation = request.form.get("word_translation")
-        courses.add_characters(character, transliteration, course_id)
-        courses.add_words(word, translation, course_id)
+        error_message = "Syöte on liian pitkä!"
+        if not courses.add_characters(character, transliteration, course_id) or not courses.add_words(word, translation, course_id):
+            return render_template("editcourse.html", error_message = error_message, url_course_name = url_course_name, course_name = course_name, course_characters = course_characters, course_words = course_words)
         return redirect(f"/editcourse/{url_course_name}")
 
 
@@ -103,7 +112,12 @@ def add_course_material(url_course_name):
     url_course_name = courses.encode_parameter(course_name)
     course_id = courses.course_id(course_name)
     course_material = courses.return_course_material(course_id)
+    teacher_id = teachers.teacher_id()
+    teacher_name = teachers.teacher_name(teacher_id)
+    course_teacher = courses.course_teacher(course_name)
     if request.method == "GET":
+        if course_teacher != teacher_name:
+            abort(403)
         return render_template("coursematerial.html", url_course_name = url_course_name, course_name = course_name, course_material = course_material)
     if request.method == "POST":
         if session["csrf_token"] != request.form["csrf_token"]:

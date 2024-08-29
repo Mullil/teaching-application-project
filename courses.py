@@ -4,6 +4,8 @@ from sqlalchemy.sql import text
 import urllib.parse
 
 def create_course(name, teacher, description):
+    if len(name) > 50:
+        return False
     try:
         url_name = encode_parameter(name)
         sql = text("INSERT INTO courses (name, teacher, description, url_name) VALUES (:name, :teacher, :description, :url_name)")
@@ -16,6 +18,8 @@ def create_course(name, teacher, description):
 
 def add_characters(character, transliteration, course_id):
     if not character or not transliteration:
+        return True
+    if len(character) > 20 or len(transliteration) > 20:
         return False
     try:
         sql = text("""INSERT INTO characters (character, transliteration, course_id)
@@ -28,27 +32,25 @@ def add_characters(character, transliteration, course_id):
 
 def add_words(word, translation, course_id):
     if not word or not translation:
-        return False
-    try:
-        sql = text("""INSERT INTO words (word, translation, course_id)
-                      VALUES (:word, :translation, :course_id)""")
-        db.session.execute(sql, {"word":word, "translation":translation, "course_id":course_id})
-        db.session.commit()
         return True
-    except:
+    if len(word) > 50 or len(translation) > 50:
         return False
+    sql = text("""INSERT INTO words (word, translation, course_id)
+                  VALUES (:word, :translation, :course_id)""")
+    db.session.execute(sql, {"word":word, "translation":translation, "course_id":course_id})
+    db.session.commit()
+    return True
 
 def add_material(material, course_id):
     if not material:
         return False
-    try:
-        sql = text("""INSERT INTO course_material (material, course_id)
-                      VALUES (:material, :course_id)""")
-        db.session.execute(sql, {"material":material, "course_id":course_id})
-        db.session.commit()
-        return True
-    except:
+    if len(material) > 6000:
         return False
+    sql = text("""INSERT INTO course_material (material, course_id)
+                  VALUES (:material, :course_id)""")
+    db.session.execute(sql, {"material":material, "course_id":course_id})
+    db.session.commit()
+    return True
 
 
 def course_id(name):
@@ -157,11 +159,10 @@ def delete_course(course_id):
     sql = text("DELETE FROM courses WHERE id=:course_id")
     db.session.execute(sql, {"course_id":course_id})
     db.session.commit()
-    return
 
 def delete_material(material_id):
     sql = text("DELETE FROM course_material WHERE id=:material_id")
     db.session.execute(sql, {"material_id":material_id})
     db.session.commit()
-    return
+
 
