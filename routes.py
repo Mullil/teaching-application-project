@@ -215,3 +215,19 @@ def delete_material(material_id):
             abort(403)
         courses.delete_material(material_id)
         return redirect(request.referrer)
+
+@app.route("/deleteword/<word_id>", methods=["POST"])
+def delete_word(word_id):
+    if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
+        courses.delete_word(word_id)
+        return redirect(request.referrer)
+
+@app.route("/deletecharacter/<character_id>", methods=["POST"])
+def delete_character(character_id):
+    if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
+        courses.delete_character(character_id)
+        return redirect(request.referrer)

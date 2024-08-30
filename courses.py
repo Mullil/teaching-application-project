@@ -90,13 +90,13 @@ def return_own_courses(teacher):
     return courses
 
 def return_course_words(course_id):
-    sql = text("SELECT word, translation FROM words WHERE course_id=:course_id")
+    sql = text("SELECT word, translation, id FROM words WHERE course_id=:course_id")
     result = db.session.execute(sql, {"course_id":course_id})
     words = result.fetchall()
     return words
 
 def return_course_characters(course_id):
-    sql = text("SELECT character, transliteration FROM characters WHERE course_id=:course_id")
+    sql = text("SELECT character, transliteration, id FROM characters WHERE course_id=:course_id")
     result = db.session.execute(sql, {"course_id":course_id})
     characters = result.fetchall()
     return characters
@@ -168,3 +168,13 @@ def delete_material(material_id):
     db.session.commit()
 
 
+def delete_character(character_id):
+    sql = text("DELETE FROM characters WHERE id=:character_id")
+    db.session.execute(sql, {"character_id":character_id})
+    db.session.commit()
+
+
+def delete_word(word_id):
+    sql = text("DELETE FROM words WHERE id=:word_id")
+    db.session.execute(sql, {"word_id":word_id})
+    db.session.commit()

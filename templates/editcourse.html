@@ -27,16 +27,22 @@ Voit lisätä kurssille opetusmateriaalia <a href="/coursematerial/{{url_course_
 Lisätyt merkit:
 <br>
 {% for character in course_characters %}
-{{character[0]}} | {{character[1]}}
+<form action="/deletecharacter/{{character[2]}}" method="POST">
+{{character[0]}} | {{character[1]}} <button type="submit" class="delete">&times;</button>
 <br>
 {% endfor %}
+<input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
+</form>
 <p>
 Lisätyt sanat:
 <br>
 {% for word in course_words %}
-{{word[0]}}  |  {{word[1]}}
+<form action="/deleteword/{{word[2]}}" method="POST">
+{{word[0]}}  |  {{word[1]}} <button type="submit" class="delete">&times;</button>
 <br>
 {% endfor %}
+<input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
+</form>
 <hr>
 <form action="/deletecourse/{{url_course_name}}" method="POST">
 <input type="submit" value="Poista kurssi">

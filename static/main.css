@@ -51,7 +51,7 @@ nav li a {
 nav li:hover {
 	background-color: #b26b6b;
 	transition: background-color 0.5s ease;
-	padding: .75em 1.05em .55em;
+	padding: .7em 1.05em .5em;
 	transition: padding 0.3s ease;
 }
 
@@ -83,6 +83,15 @@ button:hover {
 	text-decoration: underline;
 	border: .1em solid black;
 	transition: background-color 0.5s ease;
+}
+
+button.delete {
+	border: none;
+	background-color: transparent;
+	color: red;
+	padding: .05em .5em .05em;
+	cursor: pointer;
+
 }
 
 input[type="text"] {
